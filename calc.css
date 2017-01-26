@@ -1,0 +1,54 @@
+body {
+	background: radial-gradient(circle, transparent 20%, slategray 20%, slategray 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, slategray 20%, slategray 80%, transparent 80%, transparent) 50px 50px, linear-gradient(#A8B1BB 8px, transparent 8px) 0 -4px, linear-gradient(90deg, #A8B1BB 8px, transparent 8px) -4px 0;
+	background-color: slategray;
+	background-size: 100px 100px, 100px 100px, 50px 50px, 50px 50px;
+}
+
+.calc {
+	display: flex;
+	height: 100vh;
+}
+
+.blkbrd {
+	border: 1px solid #aaa;
+	padding: 5px;
+	border-radius: 2px;
+}
+
+.wrapper {
+	background-color: white;
+	max-width: 300px;
+	display: flex;
+	margin: auto;
+	flex-direction: column;
+}
+
+.wrapper > div {
+	display: flex;
+	max-width: 100%;
+	flex-direction: row;
+	margin: 3px;
+}
+
+.wrapper button {
+	width: 60px;
+	margin: 3px;
+}
+
+.wrapper div button:last-of-type {
+	flex-grow: 1;
+}
+
+.wrapper div,
+.btn {
+	font-size: 26px;
+}
+
+.hidden {
+	display: none;
+}
+
+.display {
+	max-width: 282px;
+	height: 72px
+}
