@@ -5,19 +5,20 @@ body {
 }
 
 .calc {
+  margin-top: 5%;
 	display: flex;
-	height: 100vh;
 }
 
 .blkbrd {
-	border: 1px solid #aaa;
+	border: 1px solid #eeeaaa;
 	padding: 5px;
-	border-radius: 2px;
+	border-radius: 3px;
 }
 
 .wrapper {
 	background-color: white;
-	max-width: 300px;
+	max-width: 400px;
+  max-height: 600px;
 	display: flex;
 	margin: auto;
 	flex-direction: column;
@@ -41,7 +42,7 @@ body {
 
 .wrapper div,
 .btn {
-	font-size: 26px;
+	font-size: 24px;
 }
 
 .hidden {
@@ -50,5 +51,7 @@ body {
 
 .display {
 	max-width: 282px;
-	height: 72px
+	height: 72px;
+  font-size: 38px !important;
+  font-weight: bold;
 }
