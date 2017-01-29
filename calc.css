@@ -9,12 +9,6 @@ body {
 	display: flex;
 }
 
-.blkbrd {
-	border: 1px solid #eeeaaa;
-	padding: 5px;
-	border-radius: 3px;
-}
-
 .wrapper {
 	background-color: white;
 	max-width: 400px;
@@ -22,6 +16,9 @@ body {
 	display: flex;
 	margin: auto;
 	flex-direction: column;
+  border: 1px solid #99e;
+	padding: 5px;
+	border-radius: 3px;
 }
 
 .wrapper > div {
@@ -54,4 +51,13 @@ body {
 	height: 72px;
   font-size: 38px !important;
   font-weight: bold;
+  border: 2px solid #abc;
+  background-color: #ffffcd;
+  color:#71f;
+	padding-left: 15px;
+	border-radius: 3px;
+}
+.foot {
+  font-size: 16px !important;
+  padding: 0 15%;
 }

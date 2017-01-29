@@ -12,35 +12,38 @@
 
 <body>
 	<div class="calc container">
-		<div class="wrapper col-md-4 blkbrd">
-			<div class="blkbrd display">0.</div>
+		<div class="wrapper col-md-4">
+			<div class="display">0.</div>
 			<div class="row container">
 				<button class="clear btn btn-default">C</button>
 				<button class="delete btn btn-default">CE</button>
-				<button class="operation btn btn-default">+</button>
+				<button id="lp" class="operation btn btn-default">(</button>
+				<button id="rp" class="operation btn btn-default">)</button>
+				<button id="add" class="operation btn btn-default">+</button>
 			</div>
 			<div class="row container">
-				<button class="number btn btn-default">7</button>
-				<button class="number btn btn-default">8</button>
-				<button class="number btn btn-default">9</button>
-				<button class="operation btn btn-default">×</button>
+				<button id="7" class="number btn btn-default">7</button>
+				<button id="8" class="number btn btn-default">8</button>
+				<button id="9" class="number btn btn-default">9</button>
+				<button id="mul" class="operation btn btn-default">×</button>
 			</div>
 			<div class="row container">
-				<button class="number btn btn-default">4</button>
-				<button class="number btn btn-default">5</button>
-				<button class="number btn btn-default">6</button>
-				<button class="operation btn btn-default">÷</button>
+				<button id="4" class="number btn btn-default">4</button>
+				<button id="5" class="number btn btn-default">5</button>
+				<button id="6" class="number btn btn-default">6</button>
+				<button id="div" class="operation btn btn-default">÷</button>
 			</div>
 			<div class="row container">
-				<button class="number btn btn-default">1</button>
-				<button class="number btn btn-default">2</button>
-				<button class="number btn btn-default">3</button>
-				<button class="operation btn btn-default">-</button>
+				<button id="1" class="number btn btn-default">1</button>
+				<button id="2" class="number btn btn-default">2</button>
+				<button id="3" class="number btn btn-default">3</button>
+				<button id="sub" class="operation btn btn-default">-</button>
 			</div>
 			<div class="row container">
-				<button class="number btn btn-default">0</button>
-				<button class="dot btn btn-default">.</button>
-				<button class="calculate btn btn-default">=</button>
+				<button id="0" class="number btn btn-default">0</button>
+				<button id="dot" class="dot btn btn-default">.</button>
+				<button id="pow" class="operation btn btn-default">^</button>
+				<button id="cal" class="calculate btn btn-default">=</button>
 			</div>
 		</div>
 	</div>
