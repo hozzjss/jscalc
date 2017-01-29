@@ -72,7 +72,7 @@ const operationFuns = [
 
 const isLargeFloat = (number) => {
   number = number.toString();
-  if (number.length > 8 && number.indexOf(".") < 8) {
+  if (number.length > 8 && number.indexOf(".") < 8 && number.indexOf(".") > 2) {
     return true;
   }
   return false;
@@ -104,6 +104,9 @@ const init = function (option) {
 
 const appendOp = function (op) {
   const display = $(".display").text();
+  if (display.length > 15) {
+    return false;
+  }
   $(".display").text(display + op);
 };
 
