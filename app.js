@@ -61,7 +61,7 @@ const power = (a, b) => {
     return 1;
   }
   return a * power(a, b -1);
-}
+};
 const operationFuns = [
   power,
   (a, b) => {return a * b;},
@@ -72,7 +72,9 @@ const operationFuns = [
 
 const isLargeFloat = (number) => {
   number = number.toString();
-  if (number.length > 8 && number.indexOf(".") < 8 && number.indexOf(".") > 2) {
+  if (number.length > 8 &&
+     number.indexOf(".") < 8 &&
+     number.indexOf(".") > 2) {
     return true;
   }
   return false;
@@ -82,9 +84,12 @@ const chainCalculate = (operation) => {
   for (let i = 0; i < operationRes.length; i++) {
     if (operation.match(operationRes[i])) {
       let currentOperation = operation.match(operationRes[i])[0];
-      return chainCalculate(operation.replace(currentOperation, calculate(currentOperation)));
+      return chainCalculate(operation
+        .replace(currentOperation, calculate(currentOperation)));
     }
-    operation = operation.replace("(", "").replace(")", "")
+    operation = operation
+    .replace("(", "")
+    .replace(")", "");
   }
   return operation;
 };
