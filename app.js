@@ -10,8 +10,9 @@
 //
 // chainCalculate
 // performs recursive calculation if there is more than one operator
-// MDAS in mind
-// goes through the regexes to detect Multiplication,
+// PEMDAS in mind
+// goes through the regexes to detect
+// Parentheses, Exponentiation, Multiplication,
 // Division, Addition, or Subtraction in order.
 // After it finds one of the operations
 // it sends them to the calculate function for processing
@@ -26,9 +27,10 @@
 // it is considered to be a clearing command
 // thus now it's cleared and the calculation
 // is not initialized
-//  if an option is provided however,
-//   it inits the calculator with that option
-//   passed to the function
+// if an option is provided however,
+// it inits the calculator with that option
+// passed to the function
+// it can also handle syntax errors
 //
 // appendOp
 // appends operators or operands
@@ -40,11 +42,19 @@
 // chainCalculate function
 "use strict";
 
+// Codepen fix ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+
+if (typeof CP !== "object") {
+  window.CP = {};
+  window.CP.shouldStopExecution = () => {return false};
+}
+
 // Booleans ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 let isInit, calcDone, syntaxErr;
 
 // regexes ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 const operationRes = [
+  /\((\-)?\d+(\.)?(\d+)?\D(\-)?\d+(\.)?(\d+)?\)/g,
   /(\-)?\d+(\.)?(\d+)?\^(\-)?\d+(\.)?(\d+)?/g,
   /(\-)?\d+(\.)?(\d+)?\×(\-)?\d+(\.)?(\d+)?/g,
   /(\-)?\d+(\.)?(\d+)?\÷(\-)?\d+(\.)?(\d+)?/g,
@@ -52,7 +62,6 @@ const operationRes = [
   /(\-)?\d+(\.)?(\d+)?\-(\-)?\d+(\.)?(\d+)?/g
 ];
 
-const parensRe = /\((\-)?\d+(\.)?(\d+)?\D(\-)?\d+(\.)?(\d+)?\)/g
 
 // functions ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 const numberify = (a) => {return +a;};
@@ -61,6 +70,9 @@ const power = (a, b) => {
     return 1;
   }
   return a * power(a, b -1);
+};
+const parenProcess = (a) => {
+  return chainCalculate(a.replace(/\(|\)/g, ""));
 };
 const operationFuns = [
   power,
@@ -87,9 +99,6 @@ const chainCalculate = (operation) => {
       return chainCalculate(operation
         .replace(currentOperation, calculate(currentOperation)));
     }
-    operation = operation
-    .replace("(", "")
-    .replace(")", "");
   }
   return operation;
 };
@@ -118,6 +127,9 @@ const appendOp = function (op) {
 
 const calculate = function (operation) {
   const operatorRes = [/\^/g ,/\×/g, /\÷/g, /\+/g, /\-/g];
+  if (operationRes[0].test(operation)) {
+    return parenProcess(operation);
+  }
   for (let i = 0; i < operationFuns.length; i++) {
     if (operatorRes[i].test(operation)) {
       operation = operation.split(operatorRes[i]);
@@ -140,9 +152,7 @@ const isValidOp = (operation) => {
   (((operation.indexOf("(") != -1) && (operation.indexOf(")") == -1)))) {
     return false;
   }
-  if (/\D{2,}/g.test(operation) &&
-  !/\D\-/g.test(operation)
-  || /\-\-/.test(operation)) {
+  if (/(\-|\+|\×|\÷){2,}/g.test(operation)) {
     return false;
   }
   return true;

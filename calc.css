@@ -1,62 +1,63 @@
 body {
-	background: radial-gradient(circle, transparent 20%, slategray 20%, slategray 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, slategray 20%, slategray 80%, transparent 80%, transparent) 50px 50px, linear-gradient(#A8B1BB 8px, transparent 8px) 0 -4px, linear-gradient(90deg, #A8B1BB 8px, transparent 8px) -4px 0;
-	background-color: slategray;
-	background-size: 100px 100px, 100px 100px, 50px 50px, 50px 50px;
+  background: radial-gradient(circle, transparent 20%, slategray 20%, slategray 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, slategray 20%, slategray 80%, transparent 80%, transparent) 50px 50px, linear-gradient(#A8B1BB 8px, transparent 8px) 0 -4px, linear-gradient(90deg, #A8B1BB 8px, transparent 8px) -4px 0;
+  background-color: slategray;
+  background-size: 100px 100px, 100px 100px, 50px 50px, 50px 50px;
 }
 
 .calc {
-  margin-top: 5%;
-	display: flex;
+  margin-top: 2%;
+  display: flex;
+  padding: 0 !important;
 }
 
 .wrapper {
-	background-color: white;
-	max-width: 400px;
+  background-color: white;
+  max-width: 350px;
   max-height: 600px;
-	display: flex;
-	margin: auto;
-	flex-direction: column;
+  display: flex;
+  margin: auto;
+  flex-direction: column;
   border: 1px solid #99e;
-	padding: 5px;
-	border-radius: 3px;
+  padding: 5px;
+  border-radius: 3px;
 }
 
 .wrapper > div {
-	display: flex;
-	max-width: 100%;
-	flex-direction: row;
-	margin: 3px;
+  display: flex;
+  max-width: 100%;
+  flex-direction: row;
+  margin: 3px;
 }
 
 .wrapper button {
-	width: 60px;
-	margin: 3px;
+  width: 60px;
+  margin: 2px;
 }
 
 .wrapper div button:last-of-type {
-	flex-grow: 1;
+  flex-grow: 1;
 }
 
 .wrapper div,
 .btn {
-	font-size: 24px;
+  font-size: 24px;
 }
-
-.hidden {
-	display: none;
+.wrapper .row {
+  padding: 0 !important;
 }
 
 .display {
-	max-width: 282px;
-	height: 72px;
+  max-width: 282px;
+  height: 72px;
   font-size: 38px !important;
   font-weight: bold;
   border: 2px solid #abc;
   background-color: #ffffcd;
-  color:#71f;
-	padding-left: 15px;
-	border-radius: 3px;
+  color: #71f;
+  padding-left: 15px;
+  border-radius: 3px;
 }
+
 .foot {
   font-size: 16px !important;
   padding: 0 15%;
