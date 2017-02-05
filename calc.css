@@ -1,7 +1,11 @@
 body {
-  background: radial-gradient(circle, transparent 20%, slategray 20%, slategray 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, slategray 20%, slategray 80%, transparent 80%, transparent) 50px 50px, linear-gradient(#A8B1BB 8px, transparent 8px) 0 -4px, linear-gradient(90deg, #A8B1BB 8px, transparent 8px) -4px 0;
-  background-color: slategray;
-  background-size: 100px 100px, 100px 100px, 50px 50px, 50px 50px;
+  background-color:#269;
+background-image: linear-gradient(white 2px, transparent 2px),
+linear-gradient(90deg, white 2px, transparent 2px),
+linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px);
+background-size:100px 100px, 100px 100px, 20px 20px, 20px 20px;
+background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px;
 }
 
 .calc {
@@ -48,17 +52,18 @@ body {
 
 .display {
   max-width: 282px;
-  height: 72px;
+  max-height: 90px !important;
+  min-height: 72px !important;
   font-size: 38px !important;
   font-weight: bold;
   border: 2px solid #abc;
-  background-color: #ffffcd;
-  color: #71f;
+  background-color: #F6EB9A;
+  color: #1C0C59;
   padding-left: 15px;
   border-radius: 3px;
 }
 
-.foot {
-  font-size: 16px !important;
-  padding: 0 15%;
+.foot, .foot p {
+  margin: 0 auto !important;
+  font-size: 12px !important;
 }

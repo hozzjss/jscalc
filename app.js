@@ -1,50 +1,9 @@
 // Fully functional PEMDAS calculator !!
-// DOCS
-// numberify
-// takes an string argument and returns the number equivalent
-// negative string numbers like "-1" are converted to their
-// negative equivalent without any modifications
-//
-// isLargeFloat
-// detects floating point issues
-//
-// chainCalculate
-// performs recursive calculation if there is more than one operator
-// PEMDAS in mind
-// goes through the regexes to detect
-// Parentheses, Exponentiation, Multiplication,
-// Division, Addition, or Subtraction in order.
-// After it finds one of the operations
-// it sends them to the calculate function for processing
-// then it replaces the result with the operation it has
-// processed
-// if no more operations regexes were detected the loop is
-// bypassed and the return statement executes
-//
-// init
-// clear screen if C and inits the calculation if not
-// if the init is called without an argument
-// it is considered to be a clearing command
-// thus now it's cleared and the calculation
-// is not initialized
-// if an option is provided however,
-// it inits the calculator with that option
-// passed to the function
-// it can also handle syntax errors
-//
-// appendOp
-// appends operators or operands
-//
-// calculate
-// the calculate function is ready to
-// process one operation at a time
-// it is a dependency of the
-// chainCalculate function
 "use strict";
 
 // Codepen fix ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
-if (typeof CP !== "object") {
+if (typeof window.CP !== "object") {
   window.CP = {};
   window.CP.shouldStopExecution = () => {return false};
 }
@@ -64,15 +23,20 @@ const operationRes = [
 
 
 // functions ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-const numberify = (a) => {return +a;};
-const power = (a, b) => {
-  if (b == 0) {
+//
+// numberify(number)
+// takes an string argument and returns the number equivalent
+// negative string numbers like "-1" are converted to their
+// negative equivalent without any modifications
+const numberify = number => {return +number;};
+const power = (number, exponent) => {
+  if (exponent == 0) {
     return 1;
   }
-  return a * power(a, b -1);
+  return number * power(number, exponent -1);
 };
-const parenProcess = (a) => {
-  return chainCalculate(a.replace(/\(|\)/g, ""));
+const parenProcess = (operation) => {
+  return chainCalculate(operation.replace(/\(|\)/g, ""));
 };
 const operationFuns = [
   power,
@@ -82,7 +46,10 @@ const operationFuns = [
   (a, b) => {return a - b;}
 ];
 
-const isLargeFloat = (number) => {
+//
+// isLargeFloat(number)
+// detects floating point issues
+const isLargeFloat = number => {
   number = number.toString();
   if (number.length > 8 &&
      number.indexOf(".") < 8 &&
@@ -92,7 +59,20 @@ const isLargeFloat = (number) => {
   return false;
 };
 
-const chainCalculate = (operation) => {
+//
+// chainCalculate(operation)
+// performs recursive calculation if there is more than one operator
+// PEMDAS in mind
+// goes through the regexes to detect
+// Parentheses, Exponentiation, Multiplication,
+// Division, Addition, or Subtraction in order.
+// After it finds one of the operations
+// it sends them to the calculate function for processing
+// then it replaces the result with the operation it has
+// processed
+// if no more operations regexes were detected the loop is
+// bypassed and the return statement executes
+const chainCalculate = operation => {
   for (let i = 0; i < operationRes.length; i++) {
     if (operation.match(operationRes[i])) {
       let currentOperation = operation.match(operationRes[i])[0];
@@ -103,7 +83,18 @@ const chainCalculate = (operation) => {
   return operation;
 };
 
-const init = function (option) {
+//
+// init(option)
+// clear screen if C and inits the calculation if not
+// if the init is called without an argument
+// it is considered to be a clearing command
+// thus now it's cleared and the calculation
+// is not initialized
+// if an option is provided however,
+// it inits the calculator with that option
+// passed to the function
+// it can also handle syntax errors
+const init = option => {
   if (!option) {
     $(".display").text("0.");
     isInit = false;
@@ -116,7 +107,10 @@ const init = function (option) {
   }
 };
 
-const appendOp = function (op) {
+//
+// appendOp
+// appends operators or operands
+const appendOp = op => {
   const display = $(".display").text();
   if (display.length > 15) {
     return false;
@@ -125,7 +119,13 @@ const appendOp = function (op) {
 };
 
 
-const calculate = function (operation) {
+//
+// calculate
+// the calculate function is ready to
+// process one operation at a time
+// it is a dependency of the
+// chainCalculate function
+const calculate =  operation => {
   const operatorRes = [/\^/g ,/\×/g, /\÷/g, /\+/g, /\-/g];
   if (operationRes[0].test(operation)) {
     return parenProcess(operation);
@@ -133,7 +133,8 @@ const calculate = function (operation) {
   for (let i = 0; i < operationFuns.length; i++) {
     if (operatorRes[i].test(operation)) {
       operation = operation.split(operatorRes[i]);
-      operation = operation.map(numberify).reduce(operationFuns[i]);
+      operation = operation.map(numberify)
+      .reduce(operationFuns[i]);
       if (isLargeFloat(operation)) {
         operation = operation.toFixed(2);
         if (operation.split(".")[1].match(/^0+/g) > 0) {
@@ -147,12 +148,15 @@ const calculate = function (operation) {
   }
 };
 
-const isValidOp = (operation) => {
+const isValidOp = operation => {
   if (((operation.indexOf("(") == -1) && (operation.indexOf(")")!= -1)) ||
   (((operation.indexOf("(") != -1) && (operation.indexOf(")") == -1)))) {
     return false;
   }
   if (/(\-|\+|\×|\÷){2,}/g.test(operation)) {
+    return false;
+  }
+  if (/^\d+\(\d+\)$/g.test(operation)) {
     return false;
   }
   return true;
